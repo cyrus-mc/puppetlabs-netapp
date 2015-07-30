@@ -19,7 +19,8 @@ class Puppet::Util::NetworkDevice::Netapp::Facts
     # Pull out version
     sys_version = result.child_get_string("version")
     @facts['version'] = sys_version if sys_version
-
+  
+    sys_clustered = result.child_get_string("is-clustered")
     if sys_clustered == "true"
       Puppet.debug("Device is clustered.")
       @facts['clustered'] = sys_clustered
